@@ -1,0 +1,39 @@
+:root {
+    --background: "#EDEDED";
+    --error: "#EB5758";
+}
+
+@font-face {
+    font-family: "Inter Variable";
+    src: url("../public/fonts/InterVariable.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Jetbrains Mono";
+    src: url("../public/fonts/JetBrainsMono-Regular.woff2") format("woff2");
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    cursor: default !important;
+    user-select: none;
+    font-family: "Inter Variable", sans-serif;
+}
+
+html,
+body {
+    font-family:
+        "Inter Variable", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+    height: 100%;
+    width: 100%;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    -moz-text-size-adjust: none;
+    -ms-text-size-adjust: none;
+    -o-text-size-adjust: none;
+    -webkit-text-size-adjust: 100%;
+    background: var(--background);
+}
