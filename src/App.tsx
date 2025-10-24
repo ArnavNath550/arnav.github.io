@@ -4,12 +4,14 @@ import NavBar from "./components/NavBar";
 
 import styled from "styled-components";
 import Hero from "./components/Hero";
+import ThoughtSection from "./components/ThoughtSection";
 
 const App: React.FC = () => {
   return (
     <GyanContainer>
       <NavBar />
       <Hero />
+      <ThoughtSection />
     </GyanContainer>
   );
 };
@@ -17,7 +19,7 @@ const App: React.FC = () => {
 export default App;
 
 const GyanContainer = styled.div`
-  max-width: 1024px;
+  max-width: 945px;
   width: 100%;
   margin: 0 auto;
 `;

@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const NavBar: React.FC = () => {
   return (
-    <StyledNavBar>
+    <StyledNavBar stagger={1} data-animate>
       <StyledNavBarItem>Thought</StyledNavBarItem>
       <StyledNavBarItem>Action</StyledNavBarItem>
       <StyledNavBarItem>Craft</StyledNavBarItem>
@@ -13,10 +13,10 @@ const NavBar: React.FC = () => {
 
 export default NavBar;
 
-const StyledNavBar = styled.div`
+const StyledNavBar = styled.div<{ stagger: number }>`
   width: 100%;
-  padding-top: 20px;
-  padding-bottom: 20px;
+  padding-top: 50px;
+  padding-bottom: 30px;
 `;
 
 const StyledNavBarItem = styled.div`
@@ -25,10 +25,11 @@ const StyledNavBarItem = styled.div`
   padding-top: 10px;
   padding-bottom: 10px;
   font-weight: 450;
-  font-size: 19px;
+  font-size: 21px;
   color: var(--primary);
   transition: ease 0.1s all;
   &:hover {
     opacity: 0.8;
   }
+  --stagger: ${(props) => props.stagger};
 `;

@@ -24,7 +24,7 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    cursor: default !important;
+    /*cursor: default !important;*/
     font-family: "Inter Variable", sans-serif;
 }
 
@@ -45,4 +45,73 @@ body {
 
 ::selection {
     background: #e1e1e1;
+}
+
+[basics-prose] > :not(:last-child),
+[basics-prose] > [basics-codeblock] {
+    margin-bottom: 28px;
+}
+
+[basics-prose] > :first-child {
+    margin-top: 0;
+}
+
+[basics-prose] > :not(:last-child),
+[basics-prose] > [basics-codeblock] {
+    margin-bottom: 28px;
+}
+[basics-prose] > :first-child {
+    margin-top: 0;
+}
+[basics-prose] > :where(h1, h2, h3, h4, h5, h6) {
+    margin-top: 56px;
+    margin-bottom: 28px;
+}
+[basics-heading],
+[basics-prose] :where(h1, h2, h3, h4, h5, h6) {
+    font: var(--type-heading);
+    font-feature-settings: "kern", "calt", "case";
+}
+[basics-prose] :where(h1, h2, h3, h4, h5, h6, p, li),
+[basics-text]:where(h1, h2, h3, h4, h5, h6, p, li) {
+    font: var(--type);
+}
+[basics-prose] p,
+[basics-text] {
+    margin: 0;
+    letter-spacing: 0;
+    font-size: var(--text);
+    line-height: var(--leading);
+    font-feature-settings: "kern", "frac", "kern", "ss02";
+}
+@media (prefers-reduced-motion: no-preference) {
+    [data-animate] {
+        animation: enter 0.6s both;
+        animation-delay: calc(var(--stagger) * var(--delay) + var(--start));
+    }
+}
+[data-animate] {
+    --stagger: 0;
+    --delay: 120ms;
+    --start: 0ms;
+}
+/*[basics-text] {
+    margin: 0;
+}*/
+
+@keyframes enter {
+    0% {
+        opacity: 0;
+        transform: translateY(5px);
+    }
+    100% {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+[data-animate] {
+    --stagger: 0;
+    --delay: 500ms;
+    --start: 0ms;
 }
