@@ -7,7 +7,7 @@ const Container = styled.div`
   align-items: flex-start;
   justify-content: center;
   position: relative;
-  min-height: 500vh;
+  min-height: 300vh;
 `;
 
 const StickyContainer = styled.div`
@@ -26,22 +26,13 @@ const LinesContainer = styled(motion.div)`
   align-items: center;
   justify-content: center;
   position: absolute;
+  transform: matrix(1, 0, 0.5, 1, 0, 0);
 `;
 
 const Line = styled.div`
   width: 2px;
   height: 200px;
-  background-color: #333;
-`;
-
-const ContentContainer = styled(motion.div)`
-  position: absolute;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  gap: 10px;
-  z-index: 10;
+  background-color: var(--primary);
 `;
 
 const ThoughtMomentum: React.FC = () => {
@@ -76,6 +67,7 @@ const ThoughtMomentum: React.FC = () => {
         <LinesContainer
           style={{
             opacity: linesOpacity,
+            filter: "blur(10)",
           }}
         >
           {Array.from({ length: lines }, (_, index) => {
@@ -101,50 +93,9 @@ const ThoughtMomentum: React.FC = () => {
             );
           })}
         </LinesContainer>
-
-        <ContentContainer
-          style={{
-            opacity: contentOpacity,
-            scale: contentScale,
-          }}
-        >
-          <StyledThoughtHeader>Enter, Thought</StyledThoughtHeader>
-          <StyledThoughtDescription>
-            The thought of action, comes from memories, from your mind's crave
-            for more.
-          </StyledThoughtDescription>
-
-          {/*<StyledThoughtParagraph>
-            The thought of action, comes from memories, from your mind's crave
-            for more.
-          </StyledThoughtParagraph>*/}
-        </ContentContainer>
       </StickyContainer>
     </Container>
   );
 };
 
 export default ThoughtMomentum;
-
-const StyledThoughtHeader = styled.div`
-  font-size: 2.5rem;
-  font-weight: 450;
-`;
-
-const StyledThoughtDescription = styled.div`
-  font-size: 1.5rem;
-  font-weight: 410;
-  color: #555;
-  max-width: 400px;
-  text-align: center;
-  line-height: 35px;
-`;
-
-const StyledThoughtParagraph = styled.div`
-  font-size: 1.5rem;
-  font-weight: 410;
-  color: #555;
-  max-width: 700px;
-  text-align: center;
-  line-height: 35px;
-`;

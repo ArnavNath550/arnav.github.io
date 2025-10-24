@@ -5,6 +5,7 @@ import NavBar from "./components/NavBar";
 import styled from "styled-components";
 import Hero from "./components/Hero";
 import ThoughtSection from "./components/ThoughtSection";
+import Section from "./components/Section";
 
 const App: React.FC = () => {
   return (
@@ -12,6 +13,7 @@ const App: React.FC = () => {
       <NavBar />
       <Hero />
       <ThoughtSection />
+      <Section>thought action</Section>
     </GyanContainer>
   );
 };
