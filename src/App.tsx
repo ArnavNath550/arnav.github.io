@@ -8,6 +8,7 @@ import Hero from "./components/Hero";
 import { BrowserRouter, Routes, Route } from "react-router";
 import ShowcaseAnimation from "./components/MicroAnimations/ShowcaseAnimation";
 import BottomBarComponent from "./components/ShowComponents/BottomBarComponent";
+import FeedbackCaptureAnimation from "./components/ShowComponents/FeedbackCaptureComponent";
 
 const App: React.FC = () => {
   return (
@@ -26,6 +27,14 @@ const App: React.FC = () => {
           path="/craft/bottom-bar"
           element={
             <ShowcaseAnimation showcaseAnimation={<BottomBarComponent />} />
+          }
+        />
+        <Route
+          path="/craft/feedback-capture"
+          element={
+            <ShowcaseAnimation
+              showcaseAnimation={<FeedbackCaptureAnimation />}
+            />
           }
         />
       </Routes>

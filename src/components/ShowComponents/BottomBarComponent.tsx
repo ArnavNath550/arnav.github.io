@@ -18,10 +18,8 @@ const BottomBarComponent: React.FC = () => {
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!barRef.current) return;
-
     const { left } = barRef.current.getBoundingClientRect();
     const x = e.clientX - left;
-
     let closestItemIndex: number | null = null;
     let closestDistance = Infinity;
 
@@ -30,7 +28,6 @@ const BottomBarComponent: React.FC = () => {
       const rect = item.getBoundingClientRect();
       const center = rect.left + rect.width / 2 - left;
       const distance = Math.abs(center - x);
-
       if (distance < closestDistance) {
         closestDistance = distance;
         closestItemIndex = index;
@@ -38,7 +35,6 @@ const BottomBarComponent: React.FC = () => {
     });
 
     const SNAP_THRESHOLD = 40;
-
     if (
       closestItemIndex !== null &&
       itemRefs.current[closestItemIndex] &&
@@ -83,11 +79,9 @@ const BottomBarComponent: React.FC = () => {
     },
   ]);
 
-  // Derived filtered items based on search
   const filteredMenuItems = React.useMemo(() => {
     if (searchQuery.trim() === "") return menuItems;
     const lower = searchQuery.toLowerCase();
-
     return menuItems
       .map((section) => ({
         ...section,
@@ -98,7 +92,6 @@ const BottomBarComponent: React.FC = () => {
       .filter((section) => section.items.length > 0);
   }, [searchQuery, menuItems]);
 
-  // Adjust BAR_HEIGHT dynamically based on number of results
   React.useEffect(() => {
     if (!commandMenuOpen) {
       setBarWidth(280);
@@ -128,16 +121,12 @@ const BottomBarComponent: React.FC = () => {
     setBarRadius(20);
   }, [commandMenuOpen, filteredMenuItems, searchQuery]);
 
-  // ✅ Keyboard shortcuts: Cmd/Ctrl + K to open, Esc to close
   React.useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      // Cmd + K (Mac) or Ctrl + K (Windows/Linux)
       if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
         e.preventDefault();
         setCommandMenuOpen(!commandMenuOpen);
       }
-
-      // Escape to close
       if (e.key === "Escape") {
         setCommandMenuOpen(false);
       }
