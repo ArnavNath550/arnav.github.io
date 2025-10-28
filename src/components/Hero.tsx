@@ -1,8 +1,15 @@
 import * as React from "react";
 import styled from "styled-components";
 import Section from "./Section";
+import FineTuningAnimation from "./MicroAnimations/FineTuningAnimation";
+import PixelAnimation from "./MicroAnimations/PixelAnimation";
+import PerformanceAnimation from "./MicroAnimations/PerformanceAnimation";
 
 const Hero: React.FC = () => {
+  const paragraphText =
+    "When polishing and fine-tuning every pixel, performance, and motion design adds up. It becomes a memorable interaction. That is my challenge.";
+  const words = paragraphText.split(" ");
+
   return (
     <Section>
       <StyledHero>
@@ -32,11 +39,11 @@ const Hero: React.FC = () => {
             </StyledHeroHeading>
           </StyledHeroContent>
         </StyledHeroLeft>
-        <StyledHeroRight data-animate basics-text stagger={3}>
+        <StyledHeroRight>
           <StyledHeroParagraph>
-            Have you ever noticed that some animation sequences can be improved
-            with just a touch of delay? Or that some interactions just feel
-            better without any motion at all?
+            {words.map((word, index) => (
+              <div key={index}>{word} </div>
+            ))}
           </StyledHeroParagraph>
         </StyledHeroRight>
       </StyledHero>
@@ -55,6 +62,7 @@ const StyledHero = styled.div`
 const StyledHeroLeft = styled.div`
   width: 100%;
 `;
+
 const StyledTime = styled.div<{ stagger: number }>`
   color: var(--primary);
   font-family: var(--secondaryFont);
@@ -64,9 +72,14 @@ const StyledTime = styled.div<{ stagger: number }>`
   --stagger: ${(props) => props.stagger};
 `;
 
-const StyledHeroHeading = styled.div<{ stagger: number; small?: boolean }>`
+const StyledHeroHeading = styled.div<{
+  devangari?: boolean;
+  stagger: number;
+  small?: boolean;
+}>`
   color: var(--primary);
-  font-family: var(--secondaryFont);
+  font-family: ${(props) =>
+    props.devangari == true ? "var(--devangariFont)" : "var(--primaryFont)"};
   font-weight: 450;
   // font-size: ${(props) => (props.small ? "1.5rem" : "2.2rem")};
   font-size: 2.2rem;
@@ -75,7 +88,7 @@ const StyledHeroHeading = styled.div<{ stagger: number; small?: boolean }>`
 
 const StyledItalic = styled.span`
   font-style: italic;
-  font-family: inherit;
+  font-family: var(--secondaryFont);
   color: var(--black);
 `;
 
@@ -88,14 +101,19 @@ const StyledHeroContent = styled.div`
 `;
 
 const StyledHeroRight = styled.div<{ stagger: number }>`
-  width: 50%;
+  width: 90%;
   --stagger: ${(props) => props.stagger};
 `;
 
-const StyledHeroParagraph = styled.p`
+const StyledHeroParagraph = styled.div`
   font-size: 1.5rem;
   color: var(--primary);
   text-align: justify;
-  line-height: 35px;
+  line-height: 45px;
   font-weight: 450;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
 `;

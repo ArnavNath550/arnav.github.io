@@ -4,17 +4,32 @@ import NavBar from "./components/NavBar";
 
 import styled from "styled-components";
 import Hero from "./components/Hero";
-import ThoughtSection from "./components/ThoughtSection";
-import Section from "./components/Section";
+
+import { BrowserRouter, Routes, Route } from "react-router";
+import ShowcaseAnimation from "./components/MicroAnimations/ShowcaseAnimation";
+import BottomBarComponent from "./components/ShowComponents/BottomBarComponent";
 
 const App: React.FC = () => {
   return (
-    <GyanContainer>
-      <NavBar />
-      <Hero />
-      <ThoughtSection />
-      <Section>thought action</Section>
-    </GyanContainer>
+    <BrowserRouter>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <GyanContainer>
+              <NavBar />
+              <Hero />
+            </GyanContainer>
+          }
+        />
+        <Route
+          path="/craft/bottom-bar"
+          element={
+            <ShowcaseAnimation showcaseAnimation={<BottomBarComponent />} />
+          }
+        />
+      </Routes>
+    </BrowserRouter>
   );
 };
 
