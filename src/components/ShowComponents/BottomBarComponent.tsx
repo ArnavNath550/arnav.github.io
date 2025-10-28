@@ -134,7 +134,7 @@ const BottomBarComponent: React.FC = () => {
       // Cmd + K (Mac) or Ctrl + K (Windows/Linux)
       if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
         e.preventDefault();
-        setCommandMenuOpen(true);
+        setCommandMenuOpen(!commandMenuOpen);
       }
 
       // Escape to close
