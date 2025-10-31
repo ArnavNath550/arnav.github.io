@@ -27,6 +27,8 @@
     box-sizing: border-box;
     /*cursor: default !important;*/
     font-family: "Inter Variable", sans-serif;
+    scrollbar-color: #888 #888;
+    scrollbar-width: thin;
 }
 
 html,
