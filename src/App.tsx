@@ -1,6 +1,5 @@
 import * as React from "react";
 import "./index.css";
-import styled from "styled-components";
 
 import { BrowserRouter, Routes, Route } from "react-router";
 import BottomBarComponent from "./components/ShowComponents/BottomBarComponent";

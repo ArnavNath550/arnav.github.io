@@ -1,13 +1,24 @@
+//@ts-nocheck
 import { AnimatePresence, motion } from "framer-motion";
 import * as React from "react";
 import styled from "styled-components";
+
+interface MenuItem {
+  name: string;
+  shortcuts: string[];
+}
+
+interface MenuSection {
+  headerName: string;
+  items: MenuItem[];
+}
 
 const BottomBarComponent: React.FC = () => {
   const [hoverX, setHoverX] = React.useState(0);
   const [hoverWidth, setHoverWidth] = React.useState(40);
   const [isHovered, setIsHovered] = React.useState(false);
 
-  const barRef = React.useRef<HTMLDivElement>(null);
+  const barRef = React.useRef<HTMLDivElement | null>(null);
   const itemRefs = React.useRef<(HTMLDivElement | null)[]>([]);
 
   const [BAR_WIDTH, setBarWidth] = React.useState(280);
@@ -41,8 +52,8 @@ const BottomBarComponent: React.FC = () => {
       closestDistance < SNAP_THRESHOLD
     ) {
       const rect = itemRefs.current[closestItemIndex]!.getBoundingClientRect();
-      const { left } = barRef.current.getBoundingClientRect();
-      const center = rect.left + rect.width / 2 - left;
+      const { left: barLeft } = barRef.current.getBoundingClientRect();
+      const center = rect.left + rect.width / 2 - barLeft;
       setHoverX(center);
       setHoverWidth(rect.width);
     } else {
@@ -60,7 +71,7 @@ const BottomBarComponent: React.FC = () => {
   const [commandMenuOpen, setCommandMenuOpen] = React.useState(false);
   const [searchQuery, setSearchQuery] = React.useState("");
 
-  const [menuItems] = React.useState([
+  const [menuItems] = React.useState<MenuSection[]>([
     {
       headerName: "Developer",
       items: [
@@ -125,7 +136,7 @@ const BottomBarComponent: React.FC = () => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
         e.preventDefault();
-        setCommandMenuOpen(!commandMenuOpen);
+        setCommandMenuOpen((prev) => !prev);
       }
       if (e.key === "Escape") {
         setCommandMenuOpen(false);
@@ -203,7 +214,7 @@ const BottomBarComponent: React.FC = () => {
                 <StyledCommandMenuInput
                   placeholder="Search for a command"
                   value={searchQuery}
-                  autoFocus={true}
+                  autoFocus
                   onChange={(e) => setSearchQuery(e.target.value)}
                 />
               </StyledCommandMenuInputContainer>

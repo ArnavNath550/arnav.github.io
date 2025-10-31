@@ -1,36 +1,31 @@
 import * as React from "react";
 import styled from "styled-components";
-import ThoughtAnimation from "../components/Animations/ThoughtAnimation";
 import {
   motion,
   useMotionValue,
   useVelocity,
   useTransform,
   useSpring,
+  MotionValue,
 } from "framer-motion";
-import { Link } from "react-router";
 import NavBar from "../components/NavBar";
 
 const Index: React.FC = () => {
-  const cursorRef = React.useRef(null);
+  const cursorRef = React.useRef<HTMLDivElement | null>(null);
 
-  // Motion values for position
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
+  const mouseX: MotionValue<number> = useMotionValue(0);
+  const mouseY: MotionValue<number> = useMotionValue(0);
 
-  // Track velocity of the cursor movement
   const velocityX = useVelocity(mouseX);
   const velocityY = useVelocity(mouseY);
 
-  // Compute overall speed magnitude
-  const speed = useTransform([velocityX, velocityY], ([vx, vy]) =>
-    Math.sqrt(vx * vx + vy * vy),
+  const speed = useTransform<[number, number], number>(
+    [velocityX, velocityY],
+    //@ts-ignore
+    ([vx, vy]) => Math.sqrt(vx * vx + vy * vy),
   );
 
-  // Map speed → scale (faster = smaller circle)
-  const scale = useTransform(speed, [0, 1000], [1, 0.8], { clamp: true });
-
-  // Optional: smooth the scale transition slightly
+  const scale = useTransform(speed, [0, 1000], [1, 0.8]);
   const smoothScale = useSpring(scale, { stiffness: 300, damping: 20 });
 
   React.useEffect(() => {
@@ -44,32 +39,30 @@ const Index: React.FC = () => {
 
   return (
     <Container>
-      {/* Circle cursor with dynamic scale */}
       <CircleCursor
         style={{ x: mouseX, y: mouseY, scale: smoothScale }}
         ref={cursorRef}
       />
-
       <GyanContainer>
         <NavBar />
         <StyledIndexHero>
           <StyledIndexHeroContent>
             <StyledIndexHeroLeft>
-              <StyledIndexHeading data-animate basics-text stagger={3}>
+              <StyledIndexHeading stagger={3}>
                 Arnav Nath, is a{" "}
                 <StyledNewsreaderFont>software craftsman</StyledNewsreaderFont>
               </StyledIndexHeading>
-              <StyledIndexHeading data-animate basics-text stagger={3.5}>
+              <StyledIndexHeading stagger={3.5}>
                 Crafting{" "}
                 <StyledNewsreaderFont>memorable software</StyledNewsreaderFont>
               </StyledIndexHeading>
-              <StyledIndexHeading data-animate basics-text stagger={4}>
+              <StyledIndexHeading stagger={4}>
                 In search for{" "}
                 <StyledNewsreaderFont>perfection.</StyledNewsreaderFont>
               </StyledIndexHeading>
             </StyledIndexHeroLeft>
             <StyledIndexHeroRight>
-              <StyledIndexHeading data-animate basics-text stagger={4.5}>
+              <StyledIndexHeading stagger={4.5}>
                 When polishing and fine-tuning every pixel, performance, and
                 motion design adds up. It becomes a memorable interaction.
               </StyledIndexHeading>
@@ -82,8 +75,6 @@ const Index: React.FC = () => {
 };
 
 export default Index;
-
-// ---------------- Styled Components ----------------
 
 const Container = styled.div`
   background-color: #f5f5f5;
@@ -147,7 +138,6 @@ const StyledIndexHeroRight = styled.div`
 `;
 
 const StyledIndexHeading = styled.div<{ stagger: number }>`
-  /* Responsive font size using clamp(min, preferred, max) */
   font-size: clamp(1.2rem, 2vw + 0.8rem, 1.8rem);
   font-weight: 450;
   letter-spacing: -0.2px;
@@ -160,7 +150,6 @@ const StyledNewsreaderFont = styled.span`
   font-family: var(--secondaryFont);
   font-style: italic;
   font-weight: 480;
-  /* Slightly larger font for emphasis, also responsive */
   font-size: clamp(1.25rem, 2vw + 1rem, 2rem);
 `;
 

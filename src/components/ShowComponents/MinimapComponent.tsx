@@ -8,7 +8,6 @@ import {
 import * as React from "react";
 import styled, { createGlobalStyle } from "styled-components";
 
-// Prevent horizontal scroll globally
 const GlobalStyle = createGlobalStyle`
   body {
     overflow-x: hidden;
@@ -22,13 +21,12 @@ const MinimapComponent: React.FC = () => {
   const INTERVAL = 5;
   const CONTAINER_WIDTH = 600;
 
-  const containerRef = React.useRef<HTMLDivElement>(null);
+  const containerRef = React.useRef<HTMLDivElement | null>(null);
   const [offsetX, setOffsetX] = React.useState(0);
   const [zoomFactor, setZoomFactor] = React.useState(1);
   const [activeLine, setActiveLine] = React.useState<number | null>(null);
   const [lineIndex, setLineIndex] = React.useState<number | null>(null);
 
-  // Track mouse X position
   const mouseX = useMotionValue(-9999);
   const velocity = useVelocity(mouseX);
 
@@ -36,14 +34,14 @@ const MinimapComponent: React.FC = () => {
     mouseX.set(-9999);
   };
 
-  const handleMouseMove = (e: React.MouseEvent) => {
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const rect = containerRef.current?.getBoundingClientRect();
     if (!rect) return;
     const x = e.clientX - rect.left;
     mouseX.set(x);
   };
 
-  const [items] = React.useState([
+  const [items] = React.useState<{ itemName: string; itemContent: string }[]>([
     {
       itemName: "Mess",
       itemContent:
@@ -74,27 +72,20 @@ const MinimapComponent: React.FC = () => {
   const handleLineClick = (
     lineElement: HTMLDivElement | null,
     index: number,
-    lineIndex: number,
+    lineIdx: number,
   ) => {
     if (!lineElement || !containerRef.current) return;
-
     const lineRect = lineElement.getBoundingClientRect();
     const lineCenterInViewport = lineRect.left + lineRect.width / 2;
     const viewportCenter = window.innerWidth / 2;
-
     const deltaX = viewportCenter - lineCenterInViewport;
-
-    // Move container horizontally to center the clicked line
     setOffsetX((prev) => prev + deltaX);
-
-    // Animate the expansion
     setActiveLine(index);
-    setZoomFactor(2.5); // zoom in effect
-    setLineIndex(lineIndex);
+    setZoomFactor(2.5);
+    setLineIndex(lineIdx);
   };
 
   const handleReset = () => {
-    // Reset all states to their initial values
     setOffsetX(0);
     setZoomFactor(1);
     setActiveLine(null);
@@ -103,7 +94,6 @@ const MinimapComponent: React.FC = () => {
 
   React.useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
-      // Check if the click is outside the lines container
       if (
         containerRef.current &&
         !containerRef.current.contains(e.target as Node)
@@ -111,9 +101,7 @@ const MinimapComponent: React.FC = () => {
         handleReset();
       }
     };
-
     document.addEventListener("click", handleClickOutside);
-
     return () => {
       document.removeEventListener("click", handleClickOutside);
     };
@@ -141,28 +129,24 @@ const MinimapComponent: React.FC = () => {
           {Array.from({ length: MINI_LINES }).map((_, i) => {
             const lineX = (i / MINI_LINES) * CONTAINER_WIDTH;
             const distance = useTransform(mouseX, (x) => Math.abs(x - lineX));
-
             const baseScale = useTransform(distance, [0, 150], [1.6, 1]);
             const velocityBoost = useTransform(
               velocity,
               [-2000, 0, 2000],
               [1.2, 1, 1.2],
             );
-
             const boostedScale = useTransform(
               [baseScale, velocityBoost],
+              //@ts-ignore
               ([scale, boost]) => scale * boost,
             );
-
             const smoothScale = useSpring(boostedScale, {
               stiffness: 250,
               damping: 20,
             });
-
             const isBigLine = Number.isInteger(i / INTERVAL);
             const itemIndex = Math.floor(i / INTERVAL);
-            const lineRef = React.useRef<HTMLDivElement>(null);
-
+            const lineRef = React.useRef<HTMLDivElement | null>(null);
             const relativeIndex = activeLine !== null ? i - activeLine : 0;
             const spread =
               activeLine !== null ? relativeIndex * 150 * (zoomFactor - 1) : 0;
@@ -181,7 +165,7 @@ const MinimapComponent: React.FC = () => {
                   onClick={() =>
                     isBigLine
                       ? handleLineClick(lineRef.current, i, itemIndex)
-                      : console.log("small line")
+                      : undefined
                   }
                 >
                   <StyledLine
@@ -228,7 +212,6 @@ const MinimapComponent: React.FC = () => {
 
 export default MinimapComponent;
 
-// Styled Components
 const Container = styled.div`
   display: flex;
   align-items: center;
@@ -265,16 +248,7 @@ const StyledLine = styled(motion.div)<{ isSmall: boolean; isActive: boolean }>`
     ${(props) =>
       props.isActive ? "var(--primary)" : props.isSmall ? "#888" : "#000"};
   transform-origin: bottom center;
-
-  &:after {
-    content: "";
-    position: absolute;
-    width: 20px;
-    // background-color: orange;
-    height: 100%;
-    left: -10px;
-    opacity: 0.5;
-  }
+  position: relative;
 `;
 
 const LineLabel = styled.div<{ isActive: boolean }>`

@@ -12,7 +12,7 @@ import { toHindiNumerals } from "../helpers/numeralsHelper";
 import { Link } from "react-router";
 
 const Craft: React.FC = () => {
-  const [craftItems, setCraftItems] = React.useState([
+  const craftItems = [
     {
       video: "/videos/minimap.mov",
       name: "Thought minimap",
@@ -25,17 +25,22 @@ const Craft: React.FC = () => {
       date: "2025",
       url: "bottom-bar",
     },
-  ]);
+  ];
+
   return (
     <div style={{ height: "100%", width: "100%" }}>
       <Container>
         <NavBar />
         <Flex style={{ marginTop: 120 }}>
-          {craftItems.map((y) => {
-            return (
-              <Card video={y.video} name={y.name} date={y.date} url={y.url} />
-            );
-          })}
+          {craftItems.map((y, i) => (
+            <Card
+              key={i}
+              video={y.video}
+              name={y.name}
+              date={y.date}
+              url={y.url}
+            />
+          ))}
         </Flex>
       </Container>
     </div>
@@ -50,18 +55,14 @@ type CardProps = {
   date: string;
   url: string;
 };
-const Card: React.FC = (cardProps: CardProps) => {
-  // Scroll motion hooks
+
+const Card: React.FC<CardProps> = ({ video, name, date, url }) => {
   const { scrollY } = useScroll();
   const scrollVelocity = useVelocity(scrollY);
-
-  // Smooth out velocity for nicer easing
   const smoothVelocity = useSpring(scrollVelocity, {
     damping: 20,
     stiffness: 150,
   });
-
-  // Map velocity to a skew range
   const skewY = useTransform(
     smoothVelocity,
     [-2000, 0, 2000],
@@ -69,23 +70,16 @@ const Card: React.FC = (cardProps: CardProps) => {
   );
 
   return (
-    <Link to={`/craft/${cardProps.url}`}>
+    <Link to={`/craft/${url}`}>
       <MotionCard style={{ skewY }}>
-        <StyledCardVideo
-          src={cardProps.video}
-          autoPlay
-          loop
-          muted
-          playsInline
-        />
-        <StyledCardName>{cardProps.name}</StyledCardName>
-        <StyledCardDate>{toHindiNumerals(cardProps.date)}</StyledCardDate>
+        <StyledCardVideo src={video} autoPlay loop muted playsInline />
+        <StyledCardName>{name}</StyledCardName>
+        <StyledCardDate>{toHindiNumerals(date)}</StyledCardDate>
       </MotionCard>
     </Link>
   );
 };
 
-// ----- Styled Components -----
 const Container = styled.div`
   max-width: 950px;
   margin: 0 auto;
@@ -117,13 +111,6 @@ const StyledCard = styled.div`
 `;
 
 const MotionCard = motion(StyledCard);
-
-const StyledCardImage = styled.img`
-  width: 100%;
-  height: 300px;
-  border-radius: 10px;
-  object-fit: cover;
-`;
 
 const StyledCardName = styled.div`
   font-size: 1.5rem;
