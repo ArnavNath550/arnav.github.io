@@ -46,23 +46,28 @@ const MinimapComponent: React.FC = () => {
   const [items] = React.useState([
     {
       itemName: "Mess",
-      itemContent: "Lorem ipsum dolor sit amet, consectetur adipiscing elit...",
+      itemContent:
+        "Everything is a mess in the beginning, but it takes time for things to clear up a bit.",
     },
     {
-      itemName: "Thought",
-      itemContent: "Lorem ipsum dolor sit amet, consectetur adipiscing elit...",
-    },
-    {
-      itemName: "Process",
-      itemContent: "Lorem ipsum dolor sit amet, consectetur adipiscing elit...",
+      itemName: "Method",
+      itemContent:
+        "My method is very abstract, its really the point where I start to put the mess together into something solid, in code or in design.",
     },
     {
       itemName: "Action",
-      itemContent: "Lorem ipsum dolor sit amet, consectetur adipiscing elit...",
+      itemContent:
+        "My process of action is where I dive deeper into my solid working built in code and try to build a small workable prototype of this thought.",
+    },
+    {
+      itemName: "Craft",
+      itemContent:
+        "The essence of my craft is polish down every small edge-case, every small minor detail, and every tiny interaction a user may not even notice, but a thousand small polishes lead to a memorable graceful experience.",
     },
     {
       itemName: "Peace",
-      itemContent: "Lorem ipsum dolor sit amet, consectetur adipiscing elit...",
+      itemContent:
+        "My peace remains in my craft. I love consistantly polishing down and building memorable and interactive experiences.",
     },
   ]);
 
@@ -117,6 +122,7 @@ const MinimapComponent: React.FC = () => {
   return (
     <>
       <GlobalStyle />
+      <BlurTop />
       <Container>
         <StyledLineContainer
           ref={containerRef}
@@ -259,6 +265,16 @@ const StyledLine = styled(motion.div)<{ isSmall: boolean; isActive: boolean }>`
     ${(props) =>
       props.isActive ? "var(--primary)" : props.isSmall ? "#888" : "#000"};
   transform-origin: bottom center;
+
+  &:after {
+    content: "";
+    position: absolute;
+    width: 20px;
+    // background-color: orange;
+    height: 100%;
+    left: -10px;
+    opacity: 0.5;
+  }
 `;
 
 const LineLabel = styled.div<{ isActive: boolean }>`
@@ -294,4 +310,16 @@ const StyledContentDescription = styled(motion.span)`
   font-weight: 480;
   text-align: justify;
   line-height: 38px;
+  text-align: center;
+`;
+
+const BlurTop = styled.div`
+  position: absolute;
+  width: 100%;
+  top: 0;
+  background: linear-gradient(to top, transparent, #fcfcfc);
+  mask-image: linear-gradient(to bottom, #fcfcfc 50%, transparent);
+  height: 100px;
+  backdrop-filter: blur(50px);
+  z-index: 100000;
 `;
