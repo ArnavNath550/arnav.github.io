@@ -1,9 +1,6 @@
 import * as React from "react";
 import styled from "styled-components";
 import Section from "./Section";
-import FineTuningAnimation from "./MicroAnimations/FineTuningAnimation";
-import PixelAnimation from "./MicroAnimations/PixelAnimation";
-import PerformanceAnimation from "./MicroAnimations/PerformanceAnimation";
 
 const Hero: React.FC = () => {
   const paragraphText =
