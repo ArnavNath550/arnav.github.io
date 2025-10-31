@@ -161,4 +161,8 @@ const CircleCursor = styled(motion.div)`
   position: absolute;
   z-index: 1000;
   pointer-events: none;
+
+  @media (max-width: 780px) {
+    display: none !important; // there is no need for this cool cursor on mobile
+  }
 `;
