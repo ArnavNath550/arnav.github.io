@@ -28,7 +28,6 @@ const Index: React.FC = () => {
   );
 
   // Map speed → scale (faster = smaller circle)
-  // Feel free to tweak [0, 1000] and [1, 0.8] for different sensitivity
   const scale = useTransform(speed, [0, 1000], [1, 0.8], { clamp: true });
 
   // Optional: smooth the scale transition slightly
@@ -84,6 +83,8 @@ const Index: React.FC = () => {
 
 export default Index;
 
+// ---------------- Styled Components ----------------
+
 const Container = styled.div`
   background-color: #f5f5f5;
   width: 100%;
@@ -92,7 +93,7 @@ const Container = styled.div`
 `;
 
 const GyanContainer = styled.div`
-  width: 950px;
+  width: min(90%, 950px);
   margin: 0 auto;
   height: 100%;
 `;
@@ -114,6 +115,13 @@ const StyledIndexHeroContent = styled.div`
   flex-direction: row;
   align-items: flex-start;
   justify-content: space-between;
+
+  @media (max-width: 780px) {
+    padding-left: 20px;
+    padding-right: 20px;
+    flex-direction: column;
+    gap: 20px;
+  }
 `;
 
 const StyledIndexHeroLeft = styled.div`
@@ -121,6 +129,10 @@ const StyledIndexHeroLeft = styled.div`
   display: flex;
   flex-direction: column;
   gap: 12px;
+
+  @media (max-width: 780px) {
+    width: 100%;
+  }
 `;
 
 const StyledIndexHeroRight = styled.div`
@@ -128,20 +140,28 @@ const StyledIndexHeroRight = styled.div`
   display: flex;
   flex-direction: column;
   gap: 12px;
+
+  @media (max-width: 780px) {
+    width: 100%;
+  }
 `;
 
 const StyledIndexHeading = styled.div<{ stagger: number }>`
-  font-size: 1.7rem;
+  /* Responsive font size using clamp(min, preferred, max) */
+  font-size: clamp(1.2rem, 2vw + 0.8rem, 1.8rem);
   font-weight: 450;
   letter-spacing: -0.2px;
   --stagger: ${(props) => props.stagger};
-  line-height: 45px;
+  line-height: clamp(1.8rem, 2.5vw + 1rem, 2.8rem);
+  color: #111;
 `;
 
 const StyledNewsreaderFont = styled.span`
   font-family: var(--secondaryFont);
   font-style: italic;
   font-weight: 480;
+  /* Slightly larger font for emphasis, also responsive */
+  font-size: clamp(1.25rem, 2vw + 1rem, 2rem);
 `;
 
 const CircleCursor = styled(motion.div)`

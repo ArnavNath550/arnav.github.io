@@ -87,9 +87,14 @@ const Card: React.FC = (cardProps: CardProps) => {
 
 // ----- Styled Components -----
 const Container = styled.div`
-  width: 950px;
+  max-width: 950px;
   margin: 0 auto;
   height: 100%;
+
+  @media (max-width: 780px) {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
 `;
 
 const Flex = styled.div`
@@ -98,6 +103,9 @@ const Flex = styled.div`
   justify-content: center;
   flex-direction: row;
   gap: 15px;
+  @media (max-width: 780px) {
+    flex-direction: column;
+  }
 `;
 
 const StyledCard = styled.div`

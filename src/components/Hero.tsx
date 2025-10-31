@@ -54,6 +54,11 @@ const StyledHero = styled.div`
   width: 100%;
   display: flex;
   flex-direction: row;
+  @media (max-width: 780px) {
+    padding-left: 20px;
+    padding-right: 20px;
+    flex-direction: column;
+  }
 `;
 
 const StyledHeroLeft = styled.div`

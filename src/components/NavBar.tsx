@@ -5,9 +5,11 @@ import styled from "styled-components";
 const NavBar: React.FC = () => {
   return (
     <StyledIndexNav>
-      <StyledIndexNavItem data-animate basics-text stagger={0.5}>
-        Thought
-      </StyledIndexNavItem>
+      <Link to="/">
+        <StyledIndexNavItem data-animate basics-text stagger={0.5}>
+          Thought
+        </StyledIndexNavItem>
+      </Link>
       <Link to="/craft">
         <StyledIndexNavItem data-animate basics-text stagger={1.5}>
           Craft
@@ -31,6 +33,11 @@ const StyledIndexNav = styled.div`
   backdrop-filter: blur(5px);
   background: #ededed42;
   z-index: 100000;
+
+  @media (max-width: 780px) {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
 `;
 
 const StyledIndexNavItem = styled.div<{ stagger: number }>`
