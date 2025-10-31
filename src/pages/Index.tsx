@@ -8,6 +8,8 @@ import {
   useTransform,
   useSpring,
 } from "framer-motion";
+import { Link } from "react-router";
+import NavBar from "../components/NavBar";
 
 const Index: React.FC = () => {
   const cursorRef = React.useRef(null);
@@ -50,18 +52,7 @@ const Index: React.FC = () => {
       />
 
       <GyanContainer>
-        <StyledIndexNav>
-          <StyledIndexNavItem data-animate basics-text stagger={0.5}>
-            Thought
-          </StyledIndexNavItem>
-          <StyledIndexNavItem data-animate basics-text stagger={1}>
-            Action
-          </StyledIndexNavItem>
-          <StyledIndexNavItem data-animate basics-text stagger={1.5}>
-            Craft
-          </StyledIndexNavItem>
-        </StyledIndexNav>
-
+        <NavBar />
         <StyledIndexHero>
           <StyledIndexHeroContent>
             <StyledIndexHeroLeft>
@@ -104,24 +95,6 @@ const GyanContainer = styled.div`
   width: 950px;
   margin: 0 auto;
   height: 100%;
-`;
-
-const StyledIndexNav = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  padding-top: 25px;
-  padding-bottom: 25px;
-  position: fixed;
-  top: 0;
-`;
-
-const StyledIndexNavItem = styled.div<{ stagger: number }>`
-  font-size: 20px;
-  font-weight: 480;
-  letter-spacing: -0.2px;
-  --stagger: ${(props) => props.stagger};
-  cursor: pointer;
 `;
 
 const StyledIndexHero = styled.div`
