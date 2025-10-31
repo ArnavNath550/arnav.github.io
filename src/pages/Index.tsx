@@ -1,18 +1,36 @@
 import * as React from "react";
 import styled from "styled-components";
 import ThoughtAnimation from "../components/Animations/ThoughtAnimation";
-import { motion, useMotionValue, useSpring } from "framer-motion";
+import {
+  motion,
+  useMotionValue,
+  useVelocity,
+  useTransform,
+  useSpring,
+} from "framer-motion";
 
 const Index: React.FC = () => {
   const cursorRef = React.useRef(null);
 
-  // Raw motion values
+  // Motion values for position
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
-  // Smooth motion with spring
-  const smoothX = useSpring(mouseX, { stiffness: 300, damping: 30 });
-  const smoothY = useSpring(mouseY, { stiffness: 300, damping: 30 });
+  // Track velocity of the cursor movement
+  const velocityX = useVelocity(mouseX);
+  const velocityY = useVelocity(mouseY);
+
+  // Compute overall speed magnitude
+  const speed = useTransform([velocityX, velocityY], ([vx, vy]) =>
+    Math.sqrt(vx * vx + vy * vy),
+  );
+
+  // Map speed → scale (faster = smaller circle)
+  // Feel free to tweak [0, 1000] and [1, 0.8] for different sensitivity
+  const scale = useTransform(speed, [0, 1000], [1, 0.8], { clamp: true });
+
+  // Optional: smooth the scale transition slightly
+  const smoothScale = useSpring(scale, { stiffness: 300, damping: 20 });
 
   React.useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -25,7 +43,11 @@ const Index: React.FC = () => {
 
   return (
     <Container>
-      <CircleCursor style={{ x: smoothX, y: smoothY }} ref={cursorRef} />
+      {/* Circle cursor with dynamic scale */}
+      <CircleCursor
+        style={{ x: mouseX, y: mouseY, scale: smoothScale }}
+        ref={cursorRef}
+      />
 
       <GyanContainer>
         <StyledIndexNav>
@@ -76,7 +98,6 @@ const Container = styled.div`
   width: 100%;
   height: 100%;
   cursor: none;
-  /*color: #fff;*/
 `;
 
 const GyanContainer = styled.div`
@@ -97,7 +118,6 @@ const StyledIndexNav = styled.div`
 
 const StyledIndexNavItem = styled.div<{ stagger: number }>`
   font-size: 20px;
-  // color: #fff;
   font-weight: 480;
   letter-spacing: -0.2px;
   --stagger: ${(props) => props.stagger};
@@ -122,6 +142,7 @@ const StyledIndexHeroContent = styled.div`
   align-items: flex-start;
   justify-content: space-between;
 `;
+
 const StyledIndexHeroLeft = styled.div`
   width: 50%;
   display: flex;
@@ -141,17 +162,12 @@ const StyledIndexHeading = styled.div<{ stagger: number }>`
   font-weight: 450;
   letter-spacing: -0.2px;
   --stagger: ${(props) => props.stagger};
-  // font-family: var(--secondaryFont);
-  // font-style: italic;
-  // color: var(--primary);
-  font-weight: 450;
   line-height: 45px;
 `;
 
 const StyledNewsreaderFont = styled.span`
   font-family: var(--secondaryFont);
   font-style: italic;
-  /*color: var(--primary);*/
   font-weight: 480;
 `;
 
@@ -159,7 +175,8 @@ const CircleCursor = styled(motion.div)`
   width: 40px;
   height: 40px;
   background-color: var(--primary);
-  border-radius: 9999px;
+  border-radius: 50%;
   position: absolute;
   z-index: 1000;
+  pointer-events: none;
 `;
