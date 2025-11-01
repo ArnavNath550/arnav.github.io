@@ -249,6 +249,15 @@ const StyledLine = styled(motion.div)<{ isSmall: boolean; isActive: boolean }>`
       props.isActive ? "var(--primary)" : props.isSmall ? "#888" : "#000"};
   transform-origin: bottom center;
   position: relative;
+
+  &:after {
+    position: absolute;
+    content: "";
+    width: 15px;
+    height: 50px;
+    left: -8px;
+    opacity: 0.5;
+  }
 `;
 
 const LineLabel = styled.div<{ isActive: boolean }>`

@@ -48,11 +48,11 @@ const Index: React.FC = () => {
         <StyledIndexHero>
           <StyledIndexHeroContent>
             <StyledIndexHeroLeft>
-              <StyledIndexHeading stagger={3}>
+              <StyledIndexHeading basics-text data-animte stagger={3}>
                 Arnav Nath, is a{" "}
                 <StyledNewsreaderFont>software craftsman</StyledNewsreaderFont>
               </StyledIndexHeading>
-              <StyledIndexHeading stagger={3.5}>
+              <StyledIndexHeading basics-text data-animte stagger={3.5}>
                 Crafting{" "}
                 <StyledNewsreaderFont>memorable software</StyledNewsreaderFont>
               </StyledIndexHeading>
@@ -62,7 +62,7 @@ const Index: React.FC = () => {
               </StyledIndexHeading>
             </StyledIndexHeroLeft>
             <StyledIndexHeroRight>
-              <StyledIndexHeading stagger={4.5}>
+              <StyledIndexHeading basics-text data-animte stagger={4.5}>
                 When polishing and fine-tuning every pixel, performance, and
                 motion design adds up. It becomes a memorable interaction.
               </StyledIndexHeading>
