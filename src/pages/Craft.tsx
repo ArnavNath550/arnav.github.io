@@ -25,6 +25,12 @@ const Craft: React.FC = () => {
       date: "2025",
       url: "bottom-bar",
     },
+    {
+      video: "/videos/readerview.mov",
+      name: "Reader View",
+      date: "2025",
+      url: "reader-view",
+    },
   ];
 
   return (
