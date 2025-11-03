@@ -6,6 +6,7 @@ import BottomBarComponent from "./components/ShowComponents/BottomBarComponent";
 import Index from "./pages/Index";
 import MinimapComponent from "./components/ShowComponents/MinimapComponent";
 import Craft from "./pages/Craft";
+import ReaderViewComponent from "./components/ShowComponents/ReaderViewComponent";
 
 const App: React.FC = () => {
   return (
@@ -15,6 +16,7 @@ const App: React.FC = () => {
         <Route path="/craft/" element={<Craft />} />
         <Route path="/craft/bottom-bar" element={<BottomBarComponent />} />
         <Route path="/craft/thought-minimap" element={<MinimapComponent />} />
+        <Route path="/craft/reader-view" element={<ReaderViewComponent />} />
       </Routes>
     </BrowserRouter>
   );

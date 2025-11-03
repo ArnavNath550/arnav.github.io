@@ -36,4 +36,5 @@ body {
     -o-text-size-adjust: none;
     -webkit-text-size-adjust: 100%;
     background: var(--background);
+    letter-spacing: -0.2px;
 }

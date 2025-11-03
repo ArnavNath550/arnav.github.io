@@ -4,6 +4,7 @@
     --primaryFont:
         "Inter Variable", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
     --secondaryFont: "Newsreader";
+    --monoFont: "JetBrains Mono", "Menlo", monospace;
     --devangariFont: "Inknut Antiqua";
     --background: #ededed;
     --error: #eb5758;
@@ -53,6 +54,10 @@ body {
 #root {
     width: 100%;
     height: 100%;
+}
+
+code {
+    font-family: var(--monoFont);
 }
 
 [basics-prose] > :not(:last-child),
@@ -134,4 +139,8 @@ a {
     body {
         user-select: none;
     }
+}
+
+hr {
+    border: 0.5px solid #ccc;
 }
