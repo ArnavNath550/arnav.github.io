@@ -1,9 +1,9 @@
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, Variants } from "framer-motion";
 import * as React from "react";
 import styled from "styled-components";
 
 const ReaderViewComponent: React.FC = () => {
-  const [text] = React.useState([
+  const [text] = React.useState<string[]>([
     "Much of the art I appreciate in museums can be bucketed into aesthetics like typographic, medieval, or patterned.",
     "The boundaries feel clearly defined because we can assign names to them.",
     "I have been increasingly more stimulated by aesthetic intersections—unexpected displays of art that tastefully reject the notion of a clean, singularly defined style, yet bridges many.",
@@ -39,17 +39,15 @@ const ReaderViewComponent: React.FC = () => {
       if (overlayVisible) {
         if (e.key === "ArrowDown") {
           setDirection("down");
-          setCurrentIndex((prev) => {
-            if (prev === null) return 0;
-            return Math.min(prev + 1, text.length - 1);
-          });
+          setCurrentIndex((prev) =>
+            prev === null ? 0 : Math.min(prev + 1, text.length - 1),
+          );
         }
         if (e.key === "ArrowUp") {
           setDirection("up");
-          setCurrentIndex((prev) => {
-            if (prev === null) return 0;
-            return Math.max(prev - 1, 0);
-          });
+          setCurrentIndex((prev) =>
+            prev === null ? 0 : Math.max(prev - 1, 0),
+          );
         }
         if (e.key === "Escape") {
           setOverlayVisible(false);
@@ -81,12 +79,13 @@ const ReaderViewComponent: React.FC = () => {
   const prevText =
     currentIndex !== null && currentIndex > 0 ? text[currentIndex - 1] : null;
 
-  // Variants for credit lines
-  const creditContainerVariants = {
+  // Variants
+  const creditContainerVariants: Variants = {
     hidden: {},
-    visible: { transition: { staggerChildren: 1.2 } }, // slower stagger
+    visible: { transition: { staggerChildren: 1.2 } },
   };
-  const creditItemVariants = {
+
+  const creditItemVariants: Variants = {
     hidden: { opacity: 0, y: 2 },
     visible: {
       opacity: 1,
@@ -95,23 +94,19 @@ const ReaderViewComponent: React.FC = () => {
     },
   };
 
-  // Text fade up with smooth height via layout
-  const textContainerVariants = {
+  const textContainerVariants: Variants = {
     hidden: {},
     visible: { transition: { staggerChildren: 0.5 } },
   };
-  const textItemVariants = {
+
+  const textItemVariants: Variants = {
     hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { duration: 1.5, ease: "easeIn" },
-    },
+    visible: { opacity: 1, transition: { duration: 1.5, ease: "easeIn" } },
   };
 
   return (
     <Container>
       <ContentWrapper layout>
-        {/* Credit Lines */}
         <CreditContainer
           as={motion.div}
           variants={creditContainerVariants}
@@ -123,7 +118,7 @@ const ReaderViewComponent: React.FC = () => {
           <motion.div variants={creditItemVariants}>
             These lines are from{" "}
             <strong>
-              <a href="rauno.me">Rauno Freiberg's</a>
+              <a href="https://rauno.me">Rauno Freiberg's</a>
             </strong>{" "}
             Blog Post{" "}
             <a href="https://rauno.me/craft/contrasting-aesthetics">
@@ -135,7 +130,6 @@ const ReaderViewComponent: React.FC = () => {
           </motion.div>
         </CreditContainer>
 
-        {/* Main Text with smooth height */}
         {textAnimate && (
           <TextContainer
             as={motion.div}
@@ -160,7 +154,6 @@ const ReaderViewComponent: React.FC = () => {
         )}
       </ContentWrapper>
 
-      {/* Overlay Reader */}
       <AnimatePresence mode="wait">
         {overlayVisible && currentText && (
           <StyledOverlayTextContainer
@@ -184,12 +177,12 @@ const ReaderViewComponent: React.FC = () => {
                     center: {
                       y: 0,
                       opacity: 1,
-                      transition: { duration: 0.5, ease: "easeInOut" }, // simultaneous
+                      transition: { duration: 0.5, ease: "easeInOut" },
                     },
                     exit: {
                       y: direction === "down" ? -6 : 6,
                       opacity: 0,
-                      transition: { duration: 0.5, ease: "easeInOut" }, // simultaneous
+                      transition: { duration: 0.5, ease: "easeInOut" },
                     },
                   }}
                   custom={direction}
@@ -212,19 +205,12 @@ const ReaderViewComponent: React.FC = () => {
                         y: 0,
                         opacity: 0.7,
                         filter: "blur(1px)",
-                        transition: {
-                          duration: 0.5,
-                          ease: "easeInOut",
-                        },
+                        transition: { duration: 0.5, ease: "easeInOut" },
                       }}
                       exit={{
                         y: -6,
                         opacity: 0,
-                        transition: {
-                          duration: 0.5,
-                          ease: "easeInOut",
-                          filter: "blur(1px)",
-                        },
+                        transition: { duration: 0.5, ease: "easeInOut" },
                       }}
                     >
                       <StyledNextText layout>{nextText}</StyledNextText>
@@ -303,7 +289,7 @@ const TextContainer = styled(motion.div)`
 const StyledText = styled(motion.div)`
   transition: ease 0.5s all;
   &:hover {
-    opacity: 0.5;
+    opacity: 0.5 !important;
   }
 `;
 
