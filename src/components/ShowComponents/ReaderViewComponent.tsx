@@ -1,5 +1,5 @@
 //@ts-ignore
-import { motion, AnimatePresence, Variants } from "framer-motion";
+import { motion, AnimatePresence, type Variants } from "framer-motion";
 import * as React from "react";
 import styled from "styled-components";
 
@@ -63,6 +63,7 @@ const ReaderViewComponent: React.FC = () => {
         setTimeout(() => setCurrentIndex(null), 300);
       }
     };
+    0;
 
     window.addEventListener("keydown", handleKeyDown);
     window.addEventListener("keyup", handleKeyUp);
