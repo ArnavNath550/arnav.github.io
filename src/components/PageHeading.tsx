@@ -41,6 +41,11 @@ const StyledPageHeading = styled.div`
   display: flex;
   flex-direction: column;
   gap: 12px;
+
+  @media (max-width: 750px) {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
 `;
 
 const StyledPageHead = styled.div<{ stagger: number }>`

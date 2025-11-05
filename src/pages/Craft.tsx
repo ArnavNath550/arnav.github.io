@@ -107,7 +107,7 @@ export default Craft;
 // ====================== Styled Components ======================
 
 const Container = styled.div`
-  width: 550px;
+  max-width: 550px;
   margin: 0 auto;
   margin-top: 8rem;
   position: relative;
@@ -133,6 +133,11 @@ const CraftTableItem = styled.div`
     color: #0d0d0d;
     background-color: #f7f7f7;
   }
+
+  @media (max-width: 750px) {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
 `;
 
 const CraftTableData = styled.div<{ stagger: number }>`
@@ -155,6 +160,6 @@ const FloatingPreviewContainer = styled(motion.div)`
 `;
 
 const PreviewContent = styled.div`
-  width: 100%;
+  max-width: 100%;
   height: 100%;
 `;
