@@ -55,8 +55,12 @@ const Craft: React.FC = () => {
             onMouseMove={(e) => handleMouseMove(e, item.url)}
             onMouseLeave={handleMouseLeave}
           >
-            <CraftTableData>{toHindiNumerals(item.date)}</CraftTableData>
-            <CraftTableData>{item.name}</CraftTableData>
+            <CraftTableData data-animate basics-text stagger={0.3}>
+              {toHindiNumerals(item.date)}
+            </CraftTableData>
+            <CraftTableData data-animate basics-text stagger={0.5}>
+              {item.name}
+            </CraftTableData>
           </CraftTableItem>
         ))}
       </CraftTableContainer>
@@ -65,12 +69,13 @@ const Craft: React.FC = () => {
         {hoveredItem && (
           <FloatingPreviewContainer
             key={hoveredItem}
-            initial={{ opacity: 0, scale: 0.95 }}
+            initial={{ opacity: 0, scale: 0.95, filter: "blur(5px)" }}
             animate={{
               opacity: 1,
               scale: 1,
+              filter: "blur(0px)",
             }}
-            exit={{ opacity: 0, scale: 0.95 }}
+            exit={{ opacity: 0, scale: 0.95, filter: "blur(5px)" }}
             style={{
               top: mousePos.y,
               left: mousePos.x,
@@ -130,8 +135,9 @@ const CraftTableItem = styled.div`
   }
 `;
 
-const CraftTableData = styled.div`
+const CraftTableData = styled.div<{ stagger: number }>`
   display: flex;
+  --stagger: ${(props) => props.stagger};
 `;
 
 const FloatingPreviewContainer = styled(motion.div)`
