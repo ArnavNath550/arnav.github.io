@@ -106,8 +106,6 @@ const Craft: React.FC = () => {
 
 export default Craft;
 
-// ====================== Styled Components ======================
-
 const Container = styled.div`
   max-width: 550px;
   margin: 0 auto;
