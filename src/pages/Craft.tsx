@@ -2,7 +2,7 @@ import * as React from "react";
 import styled from "styled-components";
 import { motion, AnimatePresence } from "framer-motion";
 import PageHeading from "../components/PageHeading";
-import { getRandomElement, toHindiNumerals } from "../helpers/numeralsHelper";
+import { toHindiNumerals } from "../helpers/numeralsHelper";
 import { Link } from "react-router";
 
 const Craft: React.FC = () => {
@@ -162,14 +162,4 @@ const FloatingPreviewContainer = styled(motion.div)`
 const PreviewContent = styled.div`
   max-width: 100%;
   height: 100%;
-`;
-
-const CraftQuote = styled.div`
-  width: 100%;
-  text-align: center;
-  color: #555;
-  font-weight: 400;
-  font-size: 14px;
-  padding-top: 20px;
-  padding-bottom: 20px;
 `;
