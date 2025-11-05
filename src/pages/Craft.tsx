@@ -35,7 +35,7 @@ const Craft: React.FC = () => {
   });
 
   const handleMouseMove = (
-    e: React.MouseEvent<HTMLDivElement>,
+    e: React.MouseEvent<HTMLElement>,
     itemUrl: string,
   ) => {
     setMousePos({ x: e.clientX, y: e.clientY });
