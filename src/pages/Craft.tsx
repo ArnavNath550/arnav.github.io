@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { motion, AnimatePresence } from "framer-motion";
 import PageHeading from "../components/PageHeading";
 import { toHindiNumerals } from "../helpers/numeralsHelper";
+import { Link } from "react-router";
 
 const Craft: React.FC = () => {
   const craftItems = [
@@ -54,6 +55,7 @@ const Craft: React.FC = () => {
             key={item.url}
             onMouseMove={(e) => handleMouseMove(e, item.url)}
             onMouseLeave={handleMouseLeave}
+            to={item.url}
           >
             <CraftTableData data-animate basics-text stagger={0.3}>
               {toHindiNumerals(item.date)}
@@ -119,7 +121,7 @@ const CraftTableContainer = styled.div`
   margin-top: 30px;
 `;
 
-const CraftTableItem = styled.div`
+const CraftTableItem = styled(Link)`
   padding: 15px 0;
   border-bottom: 1px solid #ddd;
   font-size: 14px;
