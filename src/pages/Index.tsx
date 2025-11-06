@@ -6,7 +6,6 @@ import {
   useVelocity,
   useTransform,
   useSpring,
-  MotionValue,
 } from "framer-motion";
 import VideoCarousel from "../components/VideoCarousel";
 import { Link } from "react-router";
