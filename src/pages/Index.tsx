@@ -71,7 +71,7 @@ const Index: React.FC = () => {
                   </StyledIndexLinkItem>
                 </Link>
               </StyledIndexLinks>
-              <StyledIndexHeading data-animate basics-text stagger={0.8}>
+              <StyledIndexHeading data-animate basics-text stagger={0.5}>
                 Arnav Nath is a{" "}
                 <StyledNewsreaderFont>software craftsman</StyledNewsreaderFont>,
                 crafting and polishing interactions and beautiful experiences on
