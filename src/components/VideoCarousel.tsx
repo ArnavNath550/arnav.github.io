@@ -4,10 +4,10 @@ import styled from "styled-components";
 
 const VideoCarousel: React.FC = () => {
   const videos = [
-    "/public/videos/bottom-bar.mov",
-    "/public/videos/minimap.mov",
-    "/public/videos/circular-changelog.mov",
-    "/public/videos/circular-preview.mov",
+    "/videos/bottom-bar.mov",
+    "/videos/minimap.mov",
+    "/videos/circular-changelog.mov",
+    "/videos/circular-preview.mov",
   ];
 
   return (
