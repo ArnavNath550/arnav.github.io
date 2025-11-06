@@ -8,23 +8,26 @@ import {
   useSpring,
   MotionValue,
 } from "framer-motion";
-import NavBar from "../components/NavBar";
+import VideoCarousel from "../components/VideoCarousel";
+import { Link } from "react-router";
 
 const Index: React.FC = () => {
   const cursorRef = React.useRef<HTMLDivElement | null>(null);
 
-  const mouseX: MotionValue<number> = useMotionValue(0);
-  const mouseY: MotionValue<number> = useMotionValue(0);
+  // Mouse position
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
 
+  // Velocity (speed of mouse movement)
   const velocityX = useVelocity(mouseX);
   const velocityY = useVelocity(mouseY);
 
-  const speed = useTransform<[number, number], number>(
-    [velocityX, velocityY],
-    //@ts-ignore
-    ([vx, vy]) => Math.sqrt(vx * vx + vy * vy),
+  // Calculate overall speed using velocity values
+  const speed = useTransform([velocityX, velocityY], ([vx, vy]: number[]) =>
+    Math.sqrt(vx * vx + vy * vy),
   );
 
+  // Transform speed into a scale effect (faster = smaller)
   const scale = useTransform(speed, [0, 1000], [1, 0.8]);
   const smoothScale = useSpring(scale, { stiffness: 300, damping: 20 });
 
@@ -33,6 +36,7 @@ const Index: React.FC = () => {
       mouseX.set(e.clientX - 20);
       mouseY.set(e.clientY - 20);
     };
+
     window.addEventListener("mousemove", handleMouseMove);
     return () => window.removeEventListener("mousemove", handleMouseMove);
   }, [mouseX, mouseY]);
@@ -44,29 +48,31 @@ const Index: React.FC = () => {
         ref={cursorRef}
       />
       <GyanContainer>
-        <NavBar />
+        {/* <NavBar /> */}
+        <VideoCarousel />
         <StyledIndexHero>
           <StyledIndexHeroContent>
             <StyledIndexHeroLeft>
-              <StyledIndexHeading basics-text data-animte stagger={3}>
-                Arnav Nath, is a{" "}
-                <StyledNewsreaderFont>software craftsman</StyledNewsreaderFont>
-              </StyledIndexHeading>
-              <StyledIndexHeading basics-text data-animte stagger={3.5}>
-                Crafting{" "}
-                <StyledNewsreaderFont>memorable software</StyledNewsreaderFont>
-              </StyledIndexHeading>
-              <StyledIndexHeading stagger={4}>
-                In search for{" "}
-                <StyledNewsreaderFont>perfection.</StyledNewsreaderFont>
+              <StyledIndexLinks>
+                <StyledIndexLinkItem>2025</StyledIndexLinkItem>
+                <Link to="/craft">
+                  <StyledIndexLinkItem>Craft</StyledIndexLinkItem>
+                </Link>
+                <Link
+                  to="https://x.com/ArnavNath134095"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <StyledIndexLinkItem>Twitter</StyledIndexLinkItem>
+                </Link>
+              </StyledIndexLinks>
+              <StyledIndexHeading stagger={0.8}>
+                Arnav Nath is a{" "}
+                <StyledNewsreaderFont>software craftsman</StyledNewsreaderFont>,
+                crafting and polishing interactions and beautiful experiences on
+                the web that make you feel magical.
               </StyledIndexHeading>
             </StyledIndexHeroLeft>
-            <StyledIndexHeroRight>
-              <StyledIndexHeading basics-text data-animte stagger={4.5}>
-                When polishing and fine-tuning every pixel, performance, and
-                motion design adds up. It becomes a memorable interaction.
-              </StyledIndexHeading>
-            </StyledIndexHeroRight>
           </StyledIndexHeroContent>
         </StyledIndexHero>
       </GyanContainer>
@@ -76,37 +82,47 @@ const Index: React.FC = () => {
 
 export default Index;
 
+// =============================
+// Styled Components
+// =============================
+
 const Container = styled.div`
-  background-color: #f5f5f5;
+  background: #0d0d0d;
   width: 100%;
   height: 100%;
   cursor: none;
+  color: #fff;
 `;
 
 const GyanContainer = styled.div`
   width: min(90%, 950px);
   margin: 0 auto;
   height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
 `;
 
 const StyledIndexHero = styled.div`
   position: relative;
-  width: 100%;
-  height: 100%;
+  max-width: 620px;
   display: flex;
   flex-direction: row;
-  align-items: flex-end;
-  justify-content: space-between;
+  align-items: center;
+  justify-content: center;
   padding-top: 2.5rem;
   padding-bottom: 2.5rem;
+  margin: 0 auto;
 `;
 
 const StyledIndexHeroContent = styled.div`
   display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  justify-content: space-between;
-
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
   @media (max-width: 780px) {
     padding-left: 20px;
     padding-right: 20px;
@@ -116,18 +132,7 @@ const StyledIndexHeroContent = styled.div`
 `;
 
 const StyledIndexHeroLeft = styled.div`
-  width: 50%;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-
-  @media (max-width: 780px) {
-    width: 100%;
-  }
-`;
-
-const StyledIndexHeroRight = styled.div`
-  width: 50%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -138,12 +143,12 @@ const StyledIndexHeroRight = styled.div`
 `;
 
 const StyledIndexHeading = styled.div<{ stagger: number }>`
-  font-size: clamp(1.2rem, 2vw + 0.8rem, 1.8rem);
-  font-weight: 450;
+  font-size: clamp(1.2rem, 2vw + 0.8rem, 1.7rem);
+  font-weight: 380;
   letter-spacing: -0.2px;
   --stagger: ${(props) => props.stagger};
   line-height: clamp(1.8rem, 2.5vw + 1rem, 2.8rem);
-  color: #111;
+  color: #fff;
 `;
 
 const StyledNewsreaderFont = styled.span`
@@ -154,15 +159,48 @@ const StyledNewsreaderFont = styled.span`
 `;
 
 const CircleCursor = styled(motion.div)`
-  width: 40px;
-  height: 40px;
-  background-color: var(--primary);
+  width: 30px;
+  height: 30px;
+  background-color: var(--background, #0d0d0d);
+  border: 3px solid var(--primary, #fff);
   border-radius: 50%;
   position: absolute;
-  z-index: 1000;
+  z-index: 1000000;
   pointer-events: none;
 
   @media (max-width: 780px) {
-    display: none !important; // there is no need for this cool cursor on mobile
+    display: none !important; /* no custom cursor on mobile */
+  }
+`;
+
+const StyledIndexLinks = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+`;
+
+const StyledIndexLinkItem = styled.div`
+  position: relative;
+  font-size: 2rem;
+  font-weight: 400;
+  cursor: none;
+  color: inherit;
+  text-decoration: none;
+
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 100%;
+    height: 1px;
+    background-color: gray;
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  }
+
+  &:hover::after {
+    transform: scaleX(1);
   }
 `;
