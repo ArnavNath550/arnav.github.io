@@ -25,6 +25,12 @@ const Craft: React.FC = () => {
       date: "2025",
       url: "reader-view",
     },
+    {
+      video: "",
+      name: "Circular",
+      date: "2024",
+      url: "https://www.thecircular.app",
+    },
   ];
 
   const containerRef = React.useRef<HTMLDivElement | null>(null);
@@ -53,7 +59,7 @@ const Craft: React.FC = () => {
         {craftItems.map((item) => (
           <CraftTableItem
             key={item.url}
-            onMouseMove={(e) => handleMouseMove(e, item.url)}
+            onMouseMove={(e) => item.video && handleMouseMove(e, item.url)}
             onMouseLeave={handleMouseLeave}
             to={item.url}
           >
