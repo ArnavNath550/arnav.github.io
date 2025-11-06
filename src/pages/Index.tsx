@@ -53,19 +53,25 @@ const Index: React.FC = () => {
           <StyledIndexHeroContent>
             <StyledIndexHeroLeft>
               <StyledIndexLinks>
-                <StyledIndexLinkItem>2025</StyledIndexLinkItem>
+                <StyledIndexLinkItem basics-text data-animate stagger={0.2}>
+                  2025
+                </StyledIndexLinkItem>
                 <Link to="/craft">
-                  <StyledIndexLinkItem>Craft</StyledIndexLinkItem>
+                  <StyledIndexLinkItem basics-text data-animate stagger={0.2}>
+                    Craft
+                  </StyledIndexLinkItem>
                 </Link>
                 <Link
                   to="https://x.com/ArnavNath134095"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <StyledIndexLinkItem>Twitter</StyledIndexLinkItem>
+                  <StyledIndexLinkItem basics-text data-animate stagger={0.2}>
+                    Twitter
+                  </StyledIndexLinkItem>
                 </Link>
               </StyledIndexLinks>
-              <StyledIndexHeading stagger={0.8}>
+              <StyledIndexHeading data-animate basics-text stagger={0.8}>
                 Arnav Nath is a{" "}
                 <StyledNewsreaderFont>software craftsman</StyledNewsreaderFont>,
                 crafting and polishing interactions and beautiful experiences on
@@ -178,14 +184,14 @@ const StyledIndexLinks = styled.div`
   gap: 15px;
 `;
 
-const StyledIndexLinkItem = styled.div`
+const StyledIndexLinkItem = styled.div<{ stagger: number }>`
   position: relative;
   font-size: 2rem;
   font-weight: 400;
   cursor: none;
   color: inherit;
   text-decoration: none;
-
+  --stagger: var(${(props) => props.stagger});
   &::after {
     content: "";
     position: absolute;
