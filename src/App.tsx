@@ -8,6 +8,7 @@ import MinimapComponent from "./components/ShowComponents/MinimapComponent";
 import Craft from "./pages/Craft";
 import ReaderViewComponent from "./components/ShowComponents/ReaderViewComponent";
 import TimeMachineComponent from "./components/ShowComponents/TimeMachineComponent";
+import TodoComponent from "./components/ShowComponents/TodoComponent";
 
 const App: React.FC = () => {
   return (
@@ -19,6 +20,7 @@ const App: React.FC = () => {
         <Route path="/craft/thought-minimap" element={<MinimapComponent />} />
         <Route path="/craft/reader-view" element={<ReaderViewComponent />} />
         <Route path="/craft/time-machine" element={<TimeMachineComponent />} />
+        <Route path="/craft/todo" element={<TodoComponent />} />
       </Routes>
     </BrowserRouter>
   );
