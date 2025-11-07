@@ -11,7 +11,9 @@ const TodoComponent: React.FC = () => {
   const [isDeleting, setIsDeleting] = React.useState<number | null>(null);
   const inputRef = React.useRef<HTMLInputElement>(null);
   const todoListRef = React.useRef<HTMLDivElement>(null);
-  const deleteTimersRef = React.useRef<Map<number, NodeJS.Timeout>>(new Map());
+  const deleteTimersRef = React.useRef<
+    Map<number, ReturnType<typeof setTimeout>>
+  >(new Map());
 
   const handleSubmit = () => {
     if (!input.trim()) return;
@@ -98,7 +100,7 @@ const TodoComponent: React.FC = () => {
       transition: {
         duration: 0.5,
         delay: 0.2,
-        when: "beforeChildren",
+        when: "beforeChildren" as const,
         staggerChildren: 0.3,
         delayChildren: 0.2,
       },
@@ -254,7 +256,7 @@ const TodoComponent: React.FC = () => {
             </StyledTodoItem>
           ))}
         </AnimatePresence>
-        {todos.length == 0 ? (
+        {todos.length === 0 ? (
           <StyledTodoEmptyContainer
             variants={containerVariants}
             initial="hidden"
@@ -269,9 +271,7 @@ const TodoComponent: React.FC = () => {
               need to go back to basics.
             </StyledTodoEmptyDescription>
           </StyledTodoEmptyContainer>
-        ) : (
-          <></>
-        )}
+        ) : null}
       </TodoList>
 
       <StyledTodoInputContainer
@@ -317,8 +317,6 @@ const TodoComponent: React.FC = () => {
 };
 
 export default TodoComponent;
-
-// ----------------- STYLES -----------------
 
 const Container = styled(motion.div)`
   display: flex;
@@ -489,19 +487,17 @@ const StyledTodoEmptyContainer = styled(motion.div)`
   gap: 10px;
 `;
 
-const StyledTodoEmptyHeading = styled(motion.div)<{ stagger: number }>`
+const StyledTodoEmptyHeading = styled(motion.div)`
   font-size: 1rem;
   font-weight: 500;
   color: #0d0d0d;
-  --stagger: ${(props) => props.stagger};
   font-family: var(--monoFont);
 `;
 
-const StyledTodoEmptyDescription = styled(motion.div)<{ stagger: number }>`
+const StyledTodoEmptyDescription = styled(motion.div)`
   font-size: 1rem;
   color: #555;
   line-height: 25px;
-  --stagger: ${(props) => props.stagger};
   font-family: var(--monoFont);
   font-weight: 400;
 `;
