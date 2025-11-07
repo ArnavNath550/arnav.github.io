@@ -26,6 +26,12 @@ const Craft: React.FC = () => {
       url: "reader-view",
     },
     {
+      video: "/videos/todo.mov",
+      name: "Smooth Todo",
+      date: "2025",
+      url: "smooth-todo",
+    },
+    {
       video: "",
       name: "Circular",
       date: "2024",

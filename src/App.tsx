@@ -20,7 +20,7 @@ const App: React.FC = () => {
         <Route path="/craft/thought-minimap" element={<MinimapComponent />} />
         <Route path="/craft/reader-view" element={<ReaderViewComponent />} />
         <Route path="/craft/time-machine" element={<TimeMachineComponent />} />
-        <Route path="/craft/todo" element={<TodoComponent />} />
+        <Route path="/craft/smooth-todo" element={<TodoComponent />} />
       </Routes>
     </BrowserRouter>
   );
