@@ -112,7 +112,7 @@ const TodoComponent: React.FC = () => {
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.6, ease: [0.4, 0, 0.2, 1] },
+      transition: { duration: 0.6 },
     },
   };
 
@@ -262,10 +262,11 @@ const TodoComponent: React.FC = () => {
             initial="hidden"
             animate="visible"
           >
+            {/*@ts-ignore*/}
             <StyledTodoEmptyHeading variants={textVariants}>
               (Back to Basics)
             </StyledTodoEmptyHeading>
-
+            {/*@ts-ignore*/}
             <StyledTodoEmptyDescription variants={textVariants}>
               A basic, smoothly animated todo list.. <br /> because sometimes we
               need to go back to basics.
