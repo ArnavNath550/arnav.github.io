@@ -7,6 +7,7 @@ import {
 } from "framer-motion";
 import * as React from "react";
 import styled, { createGlobalStyle } from "styled-components";
+import PageBack from "../PageBack";
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -109,6 +110,7 @@ const MinimapComponent: React.FC = () => {
 
   return (
     <>
+      <PageBack pagePath="/craft" pageName="Craft" />
       <GlobalStyle />
       <BlurTop />
       <Container>

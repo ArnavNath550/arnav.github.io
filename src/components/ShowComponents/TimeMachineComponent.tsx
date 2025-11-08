@@ -1,5 +1,6 @@
 import * as React from "react";
 import styled from "styled-components";
+import PageBack from "../PageBack";
 
 const TimeMachineComponent: React.FC = () => {
   const [notes] = React.useState([
@@ -13,6 +14,7 @@ const TimeMachineComponent: React.FC = () => {
 
   return (
     <Container>
+      <PageBack pagePath="/craft" pageName="Craft" />
       <StyledTransformContainer>
         {notes.map((note, index) => {
           // Frontmost card = index 0

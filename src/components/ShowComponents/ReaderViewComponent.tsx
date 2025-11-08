@@ -2,6 +2,7 @@
 import { motion, AnimatePresence, type Variants } from "framer-motion";
 import * as React from "react";
 import styled from "styled-components";
+import PageBack from "../PageBack";
 
 const ReaderViewComponent: React.FC = () => {
   const [text] = React.useState<string[]>([
@@ -108,6 +109,7 @@ const ReaderViewComponent: React.FC = () => {
 
   return (
     <Container>
+      <PageBack pagePath="/craft" pageName="Craft" />
       <ContentWrapper layout>
         <CreditContainer
           as={motion.div}

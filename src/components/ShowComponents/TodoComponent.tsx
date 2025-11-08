@@ -1,6 +1,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import * as React from "react";
 import styled from "styled-components";
+import PageBack from "../PageBack";
 
 const TodoComponent: React.FC = () => {
   const [todos, setTodos] = React.useState<
@@ -118,6 +119,7 @@ const TodoComponent: React.FC = () => {
 
   return (
     <Container>
+      <PageBack pagePath="/craft" pageName="Craft" />
       <TodoList ref={todoListRef}>
         <AnimatePresence>
           {todos.map((todo) => (

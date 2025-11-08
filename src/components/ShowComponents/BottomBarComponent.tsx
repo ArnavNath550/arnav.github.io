@@ -2,6 +2,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import * as React from "react";
 import styled from "styled-components";
+import PageBack from "../PageBack";
 
 interface MenuItem {
   name: string;
@@ -149,6 +150,7 @@ const BottomBarComponent: React.FC = () => {
 
   return (
     <Container>
+      <PageBack pagePath="/craft" pageName="Craft" />
       <StyledBottomBar
         ref={barRef}
         onMouseMove={handleMouseMove}
