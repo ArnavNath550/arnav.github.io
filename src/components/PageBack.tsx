@@ -20,7 +20,7 @@ const PageBack: React.FC<Props> = (props: Props) => {
 export default PageBack;
 
 const StyledPageBack = styled.div`
-  position: absolute;
+  position: fixed;
   left: 50px;
   top: 50px;
   z-index: 275375;
