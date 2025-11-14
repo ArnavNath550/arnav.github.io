@@ -5,7 +5,7 @@ import styled from "styled-components";
 const VideoCarousel: React.FC = () => {
   const videos = [
     "/videos/bottom-bar.mov",
-    "/videos/todo.mov",
+    "/videos/gallery.mov",
     "/videos/circular-changelog.mov",
     "/videos/circular-preview.mov",
   ];
