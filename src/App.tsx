@@ -10,6 +10,7 @@ import ReaderViewComponent from "./components/ShowComponents/ReaderViewComponent
 import TimeMachineComponent from "./components/ShowComponents/TimeMachineComponent";
 import TodoComponent from "./components/ShowComponents/TodoComponent";
 import GalleryComponent from "./components/ShowComponents/GalleryComponent";
+import FamilyTrayAttemptComponent from "./components/ShowComponents/FamilyTrayAttemptComponent";
 
 const App: React.FC = () => {
   return (
@@ -23,6 +24,10 @@ const App: React.FC = () => {
         <Route path="/craft/time-machine" element={<TimeMachineComponent />} />
         <Route path="/craft/gallery" element={<GalleryComponent />} />
         <Route path="/craft/smooth-todo" element={<TodoComponent />} />
+        <Route
+          path="/craft/family-tray-attempt"
+          element={<FamilyTrayAttemptComponent />}
+        />
       </Routes>
     </BrowserRouter>
   );

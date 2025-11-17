@@ -8,6 +8,12 @@ import { Link } from "react-router";
 const Craft: React.FC = () => {
   const craftItems = [
     {
+      video: "/videos/family-tray.mov",
+      name: "Family Tray Attempt",
+      date: "2025",
+      url: "family-tray-attempt",
+    },
+    {
       video: "/videos/gallery.mov",
       name: "Gallery",
       date: "2025",
