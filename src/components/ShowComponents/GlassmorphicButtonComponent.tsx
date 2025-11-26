@@ -272,6 +272,9 @@ const StyledGlassmorphicButton = styled.button`
 const StyledDisclamerContainer = styled.div`
   margin-top: 15px;
   margin-bottom: 15px;
+  padding-left: 15px;
+  padding-right: 15px;
+  text-align: -webkit-center;
 `;
 const StyledDisclamerSpan = styled.span`
   font-size: 15px;
