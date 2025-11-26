@@ -159,3 +159,7 @@ hr {
 a {
     outline: none;
 }
+
+a[data-styled] {
+    text-decoration: underline !important;
+}

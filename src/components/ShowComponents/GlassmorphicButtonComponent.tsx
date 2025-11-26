@@ -4,10 +4,24 @@ import styled from "styled-components";
 const GlassmorphicButtonComponent: React.FC = () => {
   return (
     <Container>
-      <StyledGlassmorphicButton>
-        <StyledGlassmorphicButtonSpan>Click me</StyledGlassmorphicButtonSpan>
-        <GlassmorphicShadow />
-      </StyledGlassmorphicButton>
+      <ContentWrapper>
+        <StyledGlassmorphicButton>
+          <StyledGlassmorphicButtonSpan>
+            Click a Glassmorphic Button
+          </StyledGlassmorphicButtonSpan>
+          <GlassmorphicShadow />
+        </StyledGlassmorphicButton>
+
+        <StyledDisclamerContainer>
+          <StyledDisclamerSpan>
+            This Glassmorphic button was inspired but{" "}
+            <a data-styled href="https://wabi.ai/">
+              Wabi's
+            </a>{" "}
+            beautiful Glassmorphic button
+          </StyledDisclamerSpan>
+        </StyledDisclamerContainer>
+      </ContentWrapper>
     </Container>
   );
 };
@@ -23,6 +37,12 @@ const Container = styled.div`
   background: #f0f0f0;
 `;
 
+const ContentWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+`;
 const GlassmorphicShadow = styled.div`
   width: calc(100% + var(--shadow-cuttoff-fix));
   height: calc(100% + var(--shadow-cuttoff-fix));
@@ -244,4 +264,13 @@ const StyledGlassmorphicButton = styled.button`
     -webkit-mask-source-type: auto, auto;
     mask-mode: match-source, match-source;
   }
+`;
+
+const StyledDisclamerContainer = styled.div`
+  margin-top: 15px;
+  margin-bottom: 15px;
+`;
+const StyledDisclamerSpan = styled.span`
+  font-size: 13px;
+  color: var(--info);
 `;
