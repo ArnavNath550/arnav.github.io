@@ -200,12 +200,12 @@ const StyledIndexLinkItem = styled.div<{ stagger: number }>`
     width: 100%;
     height: 1px;
     background-color: gray;
-    transform: scaleX(0);
+    transform: scaleX(1);
     transform-origin: left center;
     transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
   }
 
-  &:hover::after {
-    transform: scaleX(1);
-  }
+  // &:hover::after {
+  //   transform: scaleX(1);
+  // }
 `;
