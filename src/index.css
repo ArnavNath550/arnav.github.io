@@ -162,4 +162,7 @@ a {
 
 a[data-styled] {
     text-decoration: underline !important;
+    font-family: var(--secondaryFont);
+    font-style: italic;
+    font-weight: 500;
 }

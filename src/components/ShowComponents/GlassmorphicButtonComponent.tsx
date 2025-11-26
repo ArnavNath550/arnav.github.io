@@ -271,6 +271,6 @@ const StyledDisclamerContainer = styled.div`
   margin-bottom: 15px;
 `;
 const StyledDisclamerSpan = styled.span`
-  font-size: 13px;
+  font-size: 15px;
   color: var(--info);
 `;
