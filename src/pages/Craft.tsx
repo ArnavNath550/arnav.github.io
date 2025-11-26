@@ -8,6 +8,11 @@ import { Link } from "react-router";
 const Craft: React.FC = () => {
   const craftItems = [
     {
+      name: "Glassmorphism",
+      date: "2025",
+      url: "glassmorphic-button",
+    },
+    {
       video: "/videos/family-tray.mov",
       name: "Family Tray Attempt",
       date: "2025",
