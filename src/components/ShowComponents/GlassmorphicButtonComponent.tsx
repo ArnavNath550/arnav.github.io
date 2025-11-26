@@ -119,7 +119,7 @@ const StyledGlassmorphicButtonSpan = styled.span`
     left: calc(0% + var(--border-width) / 2);
     box-sizing: border-box;
     background: linear-gradient(
-      var(--angle-2, -75deg),
+      var(--a-2, -75deg),
       #fff0 0,
       #ffffff80 40% 50%,
       #fff0 55%
@@ -133,7 +133,7 @@ const StyledGlassmorphicButtonSpan = styled.span`
     border-radius: 999vw;
     transition:
       background-position 0.5s cubic-bezier(0.25, 1, 0.5, 1),
-      --angle-2 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+      --a-2 0.5s cubic-bezier(0.25, 1, 0.5, 1);
     display: block;
     position: absolute;
     overflow: clip;
@@ -143,8 +143,8 @@ const StyledGlassmorphicButtonSpan = styled.span`
 const StyledGlassmorphicButton = styled.button`
   --border-width: clamp(1px, 0.0625em, 4px);
   --shadow-cuttoff-fix: 2em;
-  --angle-1: -75deg;
-  --angle-2: -75deg;
+  --a-1: -75deg;
+  --a-2: -75deg;
   all: unset;
   cursor: pointer;
   -webkit-tap-highlight-color: #0000;
@@ -169,7 +169,7 @@ const StyledGlassmorphicButton = styled.button`
     0 0 #fff;
 
   &:active {
-    --angle-2: -15deg;
+    --a-2: -15deg;
     box-shadow:
       inset 0 0.125em 0.125em #0000000d,
       inset 0 -0.125em 0.125em #ffffff80,
@@ -181,7 +181,7 @@ const StyledGlassmorphicButton = styled.button`
     transform: rotateX(25deg) !important;
 
     ${StyledGlassmorphicButtonSpan}::after {
-      --angle-2: -15deg !important;
+      --a-2: -15deg !important;
       background-position: 50% 15% !important;
     }
 
@@ -196,11 +196,11 @@ const StyledGlassmorphicButton = styled.button`
   }
 
   &:active:after {
-    --angle-1: -75deg;
+    --a-1: -75deg;
   }
 
   &:hover {
-    --angle-1: -125deg;
+    --a-1: -125deg;
     -webkit-backdrop-filter: blur(0.01em);
     backdrop-filter: blur(0.01em);
     transform: scale(0.975);
@@ -229,7 +229,7 @@ const StyledGlassmorphicButton = styled.button`
     box-sizing: border-box;
     background:
       conic-gradient(
-        from var(--angle-1) at 50% 50%,
+        from var(--a-1) at 50% 50%,
         #00000080,
         #0000 5% 40%,
         #00000080 50%,
@@ -241,7 +241,7 @@ const StyledGlassmorphicButton = styled.button`
     border-radius: 999vw;
     transition:
       all 0.4s cubic-bezier(0.25, 1, 0.5, 1),
-      --angle-1 0.5s;
+      --a-1 0.5s;
     position: absolute;
     -webkit-mask-image: linear-gradient(#000 0 0), linear-gradient(#000 0 0);
     mask-image: linear-gradient(#000 0 0), linear-gradient(#000 0 0);
