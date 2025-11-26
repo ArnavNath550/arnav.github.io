@@ -11,6 +11,11 @@
     --primary: #2c3cb8;
     --black: #0d0d0d;
     --info: #555;
+    --angle-2: {
+        syntax: "<angle>";
+        inherits: false;
+        initial-value: -45deg;
+    };
 }
 
 @font-face {
@@ -21,6 +26,12 @@
 @font-face {
     font-family: "Jetbrains Mono";
     src: url("../public/fonts/JetBrainsMono-Regular.woff2") format("woff2");
+}
+
+@property --angle-1 {
+    syntax: "<angle>";
+    inherits: false;
+    initial-value: -75deg;
 }
 
 * {

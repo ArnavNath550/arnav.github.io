@@ -11,6 +11,7 @@ import TimeMachineComponent from "./components/ShowComponents/TimeMachineCompone
 import TodoComponent from "./components/ShowComponents/TodoComponent";
 import GalleryComponent from "./components/ShowComponents/GalleryComponent";
 import FamilyTrayAttemptComponent from "./components/ShowComponents/FamilyTrayAttemptComponent";
+import GlassmorphicButtonComponent from "./components/ShowComponents/GlassmorphicButtonComponent";
 
 const App: React.FC = () => {
   return (
@@ -27,6 +28,10 @@ const App: React.FC = () => {
         <Route
           path="/craft/family-tray-attempt"
           element={<FamilyTrayAttemptComponent />}
+        />
+        <Route
+          path="/craft/glassmorphic-button"
+          element={<GlassmorphicButtonComponent />}
         />
       </Routes>
     </BrowserRouter>
