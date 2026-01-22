@@ -9,7 +9,8 @@
     --background: #ededed;
     --error: #eb5758;
     --primary: #2c3cb8;
-    --black: #0d0d0d;
+    --black: #151515;
+    --surface: #cdcdcd;
     --info: #555;
     --angle-2: {
         syntax: "<angle>";
