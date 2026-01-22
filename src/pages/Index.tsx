@@ -84,10 +84,10 @@ const Index: React.FC = () => {
         </StyledMetaHeader>
         <StyledHeader>
           <StyledMotionText variants={itemVariants}>
-            <span>I am</span>, in love with creating{" "}
+            I am, in love with creating{" "}
             <StyledInlineContent>
               <motion.div variants={iconVariants}>
-                <CircularIcon width={28} height={28} />
+                <CircularIcon width={24} height={24} />
               </motion.div>
             </StyledInlineContent>{" "}
             beautiful software.
@@ -99,7 +99,7 @@ const Index: React.FC = () => {
             Interesting, novel experiences catch my{" "}
             <StyledInlineContent>
               <motion.div variants={iconVariants}>
-                <EyeIcon width={58} height={58} />
+                <EyeIcon width={48} height={48} />
               </motion.div>
             </StyledInlineContent>
           </StyledMotionText>
@@ -120,15 +120,19 @@ export default Index;
 
 const StyledContainer = styled.div`
   background-color: var(--background);
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  padding: 40px 24px;
+  box-sizing: border-box;
+  overflow-x: hidden;
 `;
 
 const StyledContent = styled.div`
   max-width: 710px;
+  width: 100%;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -138,64 +142,98 @@ const StyledContent = styled.div`
 const StyledHeader = styled(motion.div)`
   font-size: 1.8rem;
   color: var(--black);
-  line-height: 40px;
+  line-height: 1.4;
   letter-spacing: -0.2px;
   perspective: 600px;
   font-weight: 500;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 12px;
+
+  @media (max-width: 768px) {
+    font-size: 1.4rem;
+    line-height: 1.3;
+    gap: 16px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 1.25rem;
+  }
 `;
 
 const StyledMetaHeader = styled(motion.div)`
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   gap: 15px;
   align-items: center;
   padding-bottom: 15px;
   padding-top: 15px;
+
+  @media (max-width: 480px) {
+    gap: 10px;
+  }
 `;
 
 const StyledNavText = styled(motion.a)<{ variant?: string }>`
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   font-weight: 450;
   cursor: pointer;
   display: inline-block;
+  text-decoration: none;
   color: ${(props) =>
     props.variant === "staple" ? "var(--info)" : "var(--black)"};
+
+  @media (max-width: 768px) {
+    font-size: 1rem;
+  }
 `;
 
 const StyledMotionText = styled(motion.div)`
   display: flex;
+  flex-wrap: wrap;
   gap: 8px;
   align-items: center;
-  overflow: hidden;
+  overflow: visible;
+
+  @media (max-width: 768px) {
+    gap: 6px;
+  }
 `;
 
 const StyledInlineContent = styled(motion.div)`
   background: var(--surface);
   color: #fff;
   border-radius: 10px;
-  padding-left: 12px;
+  padding: 0 10px;
   width: max-content;
-  padding-right: 12px;
   display: flex;
   align-items: center;
-  height: 38px;
+  height: 34px;
   overflow: hidden;
+
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 
 const StyledFooter = styled.div`
-  position: absolute;
-  bottom: 0;
+  position: relative;
+  margin-top: 60px;
   display: flex;
   width: 100%;
   align-items: center;
   justify-content: center;
   gap: 12px;
+
+  @media (min-height: 700px) {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+  }
 `;
 
 const StyledFooterText = styled.div`
   color: var(--info);
-  font-size: 15px;
+  font-size: 14px;
 `;
