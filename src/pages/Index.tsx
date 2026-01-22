@@ -93,10 +93,10 @@ const Index: React.FC = () => {
             beautiful software.
           </StyledMotionText>
           <StyledMotionText variants={itemVariants}>
-            focused on bringing memorable interfaces to life.
+            Focused on bringing memorable interfaces to life.
           </StyledMotionText>
           <StyledMotionText variants={itemVariants}>
-            interesting, novel experiences catch my{" "}
+            Interesting, novel experiences catch my{" "}
             <StyledInlineContent>
               <motion.div variants={iconVariants}>
                 <EyeIcon width={58} height={58} />
