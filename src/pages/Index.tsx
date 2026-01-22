@@ -21,11 +21,13 @@ const Index: React.FC = () => {
   const itemVariants = {
     hidden: {
       opacity: 0,
+      scale: 1.5,
       y: 50,
       rotateX: 30,
     },
     visible: {
       opacity: 1,
+      scale: 1,
       y: 0,
       rotateX: 0,
       transition: {
