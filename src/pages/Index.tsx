@@ -125,9 +125,7 @@ const StyledContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 40px 24px;
   box-sizing: border-box;
-  overflow-x: hidden;
 `;
 
 const StyledContent = styled.div`
@@ -137,6 +135,10 @@ const StyledContent = styled.div`
   display: flex;
   flex-direction: column;
   gap: 20px;
+  @media (max-width: 768px) {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
 `;
 
 const StyledHeader = styled(motion.div)`
@@ -218,8 +220,8 @@ const StyledInlineContent = styled(motion.div)`
 `;
 
 const StyledFooter = styled.div`
-  position: relative;
-  margin-top: 60px;
+  position: absolute;
+  bottom: 0;
   display: flex;
   width: 100%;
   align-items: center;
