@@ -6,11 +6,13 @@
     --secondaryFont: "Newsreader";
     --monoFont: "Jetbrains Mono", "Menlo", monospace;
     --devangariFont: "Inknut Antiqua";
-    --background: #ededed;
+    --background: #fff;
     --error: #eb5758;
     --primary: #2c3cb8;
     --black: #151515;
     --surface: #cdcdcd;
+    --surfaceLighter: #dedede;
+    --infoLighter: #e5e5e5;
     --info: #555;
     --angle-2: {
         syntax: "<angle>";
@@ -57,7 +59,6 @@ body {
     -ms-text-size-adjust: none;
     -o-text-size-adjust: none;
     -webkit-text-size-adjust: 100%;
-    background: var(--background);
 }
 
 ::selection {

@@ -12,6 +12,7 @@ import TodoComponent from "./components/ShowComponents/TodoComponent";
 import GalleryComponent from "./components/ShowComponents/GalleryComponent";
 import FamilyTrayAttemptComponent from "./components/ShowComponents/FamilyTrayAttemptComponent";
 import GlassmorphicButtonComponent from "./components/ShowComponents/GlassmorphicButtonComponent";
+import TextTransformsComponent from "./components/ShowComponents/TextTransformsComponent";
 
 const App: React.FC = () => {
   return (
@@ -25,6 +26,10 @@ const App: React.FC = () => {
         <Route path="/craft/time-machine" element={<TimeMachineComponent />} />
         <Route path="/craft/gallery" element={<GalleryComponent />} />
         <Route path="/craft/smooth-todo" element={<TodoComponent />} />
+        <Route
+          path="/craft/text-transforms"
+          element={<TextTransformsComponent />}
+        />
         <Route
           path="/craft/family-tray-attempt"
           element={<FamilyTrayAttemptComponent />}
