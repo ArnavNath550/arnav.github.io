@@ -1,9 +1,9 @@
 import * as React from "react";
 import styled from "styled-components";
-import { motion } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 
 const Index: React.FC = () => {
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -14,7 +14,7 @@ const Index: React.FC = () => {
     },
   };
 
-  const itemVariants = {
+  const itemVariants: Variants = {
     hidden: {
       opacity: 0,
       y: 30,
@@ -23,7 +23,7 @@ const Index: React.FC = () => {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.5,
+        duration: 0.7,
         ease: [0.21, 0.47, 0.32, 0.98],
       },
     },
@@ -31,29 +31,28 @@ const Index: React.FC = () => {
 
   return (
     <StyledContainer
-      as={motion.div}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.3 }}
       variants={containerVariants}
     >
       <StyledGroupContainer>
-        <StyledGroup as={motion.div} variants={itemVariants}>
+        <StyledGroup variants={itemVariants}>
           <StyledName>Arnav Nath</StyledName>
           <StyledMetaText>Software Craftsman</StyledMetaText>
         </StyledGroup>
 
         <StyledGroupLarge>
-          <StyledText as={motion.div} variants={itemVariants}>
+          <StyledText variants={itemVariants}>
             I am currently the founder of{" "}
             <StyledLink href="https://thecircular.app">Circular</StyledLink>, a
             beautiful calendar app for your work.
           </StyledText>
-          <StyledText as={motion.div} variants={itemVariants}>
+          <StyledText variants={itemVariants}>
             I’ve been a Software Craftsman for 10+ years now, and love the art
             of bringing memorable interfaces to life.
           </StyledText>
-          <StyledText as={motion.div} variants={itemVariants}>
+          <StyledText variants={itemVariants}>
             I also craft experiments on the web such as{" "}
             <StyledLink href="https://neatbuttons.vercel.app">
               NeatButtons
@@ -63,7 +62,7 @@ const Index: React.FC = () => {
         </StyledGroupLarge>
       </StyledGroupContainer>
 
-      <StyledHorizontalGroup as={motion.div} variants={itemVariants}>
+      <StyledHorizontalGroup variants={itemVariants}>
         <StyledLink href="https://x.com/iamjhaadhoo">X</StyledLink>
         <StyledLink href="mailto:arnavnath55@gmail.com">
           arnavnath55@gmail.com
@@ -75,7 +74,7 @@ const Index: React.FC = () => {
 
 export default Index;
 
-const StyledContainer = styled.div`
+const StyledContainer = styled(motion.div)`
   width: 100%;
   height: 100vh;
   display: flex;
@@ -83,6 +82,7 @@ const StyledContainer = styled.div`
   justify-content: center;
   flex-direction: column;
   padding: 0 24px;
+  box-sizing: border-box;
 `;
 
 const StyledGroupContainer = styled.div`
@@ -93,7 +93,7 @@ const StyledGroupContainer = styled.div`
   width: 100%;
 `;
 
-const StyledGroup = styled.div`
+const StyledGroup = styled(motion.div)`
   display: flex;
   flex-direction: column;
   gap: 5px;
@@ -113,7 +113,7 @@ const StyledName = styled.div`
   color: var(--black, #000);
 `;
 
-const StyledText = styled.div`
+const StyledText = styled(motion.div)`
   font-size: clamp(1rem, 4vw, 1.1rem);
   font-weight: 450;
   color: var(--black, #000);
@@ -143,7 +143,7 @@ const StyledLink = styled.a`
   font-weight: 480;
 `;
 
-const StyledHorizontalGroup = styled.div`
+const StyledHorizontalGroup = styled(motion.div)`
   display: flex;
   flex-direction: row;
   gap: 15px;
